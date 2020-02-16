@@ -14,7 +14,7 @@ import cv2
 
 from PySide2.QtWidgets import QGraphicsPixmapItem, QGraphicsScene, QGraphicsView
 from PySide2.QtGui import QImage, QPixmap
-from PySide2.QtCore import  pyqtSignal, QPoint, Qt
+from PySide2.QtCore import QPoint, Qt, Signal
 
 
 class ModifyQGraphicsView(QGraphicsView):
@@ -41,8 +41,8 @@ class ModifyQGraphicsView(QGraphicsView):
             self._image_shape = len(self._image_data.shape)
             self._image_h, self._image_w = self._image_data.shape[:2]
 
-        mouse_move = pyqtSignal(QPoint)     # 定义一个鼠标移动信号
-        mouse_clicked = pyqtSignal(QPoint)  # 定义一个鼠标点击信号
+        mouse_move = Signal(QPoint)     # 定义一个鼠标移动信号
+        mouse_clicked = Signal(QPoint)  # 定义一个鼠标点击信号
 
     def mouseMoveEvent(self, event): 
         '''鼠标移动事件

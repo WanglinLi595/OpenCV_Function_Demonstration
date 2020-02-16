@@ -14,13 +14,23 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <widget class="QTableView" name="table_view">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>20</y>
+      <width>256</width>
+      <height>192</height>
+     </rect>
+    </property>
+   </widget>
    <widget class="QTreeWidget" name="tree_widget">
     <property name="geometry">
      <rect>
-      <x>950</x>
-      <y>10</y>
+      <x>618</x>
+      <y>11</y>
       <width>256</width>
-      <height>771</height>
+      <height>192</height>
      </rect>
     </property>
     <column>
@@ -28,16 +38,6 @@
       <string notr="true">1</string>
      </property>
     </column>
-   </widget>
-   <widget class="QTableWidget" name="tableWidget">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>10</y>
-      <width>701</width>
-      <height>771</height>
-     </rect>
-    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -54,7 +54,7 @@
      <string>文件</string>
     </property>
     <addaction name="act_load_image"/>
-    <addaction name="actionexit"/>
+    <addaction name="act_exit"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
@@ -70,7 +70,7 @@
     <string>载入图片</string>
    </property>
   </action>
-  <action name="actionexit">
+  <action name="act_exit">
    <property name="text">
     <string>退出</string>
    </property>
