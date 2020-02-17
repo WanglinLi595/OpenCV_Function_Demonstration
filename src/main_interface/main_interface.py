@@ -12,8 +12,9 @@
 import cv2
 from PySide2.QtWidgets import QMainWindow, QFileDialog, QHBoxLayout
 from main_interface import gui_main_interface
-from PySide2.QtCore import QCoreApplication, Slot
+from PySide2.QtCore import QCoreApplication, Slot, Qt
 from tools import add_tree_item, show_image_data, modify_graphics
+from opencv_function import function_warpaffine
 
 class MainInterface(QMainWindow):
 
@@ -91,6 +92,8 @@ class MainInterface(QMainWindow):
         ''' 
      
         self.ui.act_load_image.triggered.connect(self.load_image)
+        self.ui.tree_widget.itemDoubleClicked.connect(self.function_opencv)
+        self.ui.act_exit.triggered.connect(self.close)
 
     @Slot()
     def load_image(self):
@@ -113,4 +116,23 @@ class MainInterface(QMainWindow):
                             self._original_image_w)
         table_view.add_init_data(self._original_image_data)
 
+    def function_opencv(self, current_item):
+        item_str = current_item.text(0)
+
+        if item_str == "cv.warpAffine()":
+            warp_affine = function_warpaffine.WarpAffine(parent=self, input_image=self._original_image_data)
+            warp_affine.setAttribute(Qt.WA_DeleteOnClose)             # 窗口关闭时自动删除
+            # setWindowFlag()用于设置窗口标志，，参数Qt.Window表明这是一个窗口，通常
+            # 具有窗口的边框，标题栏，而不管他是否有父窗口
+            warp_affine.setWindowFlag(Qt.Window, True)
+            # 设置窗口透明度，取值0-1， 1表示完全不透明， 0表示完全透明
+            warp_affine.setWindowOpacity(1)
+            # setWindowModality()用于设置窗口的模态形式，参数Qt.ApplicationModal
+            # 阻止所有窗口的输入
+            warp_affine.setWindowModality(Qt.ApplicationModal)
+            # 设置窗口标题栏
+            text = self._translate(self.class_name, "cv.warpAffine()")
+            warp_affine.setWindowTitle(text)
+            # 显示窗口
+            warp_affine.show()
 
