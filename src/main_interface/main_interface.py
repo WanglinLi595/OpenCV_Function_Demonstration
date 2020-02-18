@@ -6,7 +6,7 @@
 @作者: LiWanglin
 @创建时间: 2020.02.15
 @最后编辑人: LiWanglin
-@最后编辑时间: 2020.02.15
+@最后编辑时间: 2020.02.18
 '''
 
 import cv2
@@ -14,7 +14,7 @@ from PySide2.QtWidgets import QMainWindow, QFileDialog, QHBoxLayout
 from main_interface import gui_main_interface
 from PySide2.QtCore import QCoreApplication, Slot, Qt
 from tools import add_tree_item, show_image_data, modify_graphics
-from opencv_function import function_warpaffine
+from opencv_function import function_warpaffine, function_cvtcolor
 
 class MainInterface(QMainWindow):
 
@@ -74,6 +74,11 @@ class MainInterface(QMainWindow):
                         self.class_name, text)
 
         # 添加函数节点
+        text = "cv.cvtColor()"
+        self.get_start_with_image_item = add_tree_item.add_tree_item(self.tree_group_item, add_tree_item.TreeItemType.function_item.value, 
+                        self.class_name, text)
+
+
         text = "cv.warpAffine()"
         self.get_start_with_image_item = add_tree_item.add_tree_item(self.tree_group_item, add_tree_item.TreeItemType.function_item.value, 
                         self.class_name, text)
@@ -119,7 +124,24 @@ class MainInterface(QMainWindow):
     def function_opencv(self, current_item):
         item_str = current_item.text(0)
 
-        if item_str == "cv.warpAffine()":
+        if item_str == "cv.cvtColor()":
+            cvt_color = function_cvtcolor.CvtColor(parent=self, input_image=self._original_image_data)
+            cvt_color.setAttribute(Qt.WA_DeleteOnClose)             # 窗口关闭时自动删除
+            # setWindowFlag()用于设置窗口标志，，参数Qt.Window表明这是一个窗口，通常
+            # 具有窗口的边框，标题栏，而不管他是否有父窗口
+            cvt_color.setWindowFlag(Qt.Window, True)
+            # 设置窗口透明度，取值0-1， 1表示完全不透明， 0表示完全透明
+            cvt_color.setWindowOpacity(1)
+            # setWindowModality()用于设置窗口的模态形式，参数Qt.ApplicationModal
+            # 阻止所有窗口的输入
+            cvt_color.setWindowModality(Qt.ApplicationModal)
+            # 设置窗口标题栏
+            text = self._translate(self.class_name, "cv.warpAffine()")
+            cvt_color.setWindowTitle(text)
+            # 显示窗口
+            cvt_color.show()
+
+        elif item_str == "cv.warpAffine()":
             warp_affine = function_warpaffine.WarpAffine(parent=self, input_image=self._original_image_data)
             warp_affine.setAttribute(Qt.WA_DeleteOnClose)             # 窗口关闭时自动删除
             # setWindowFlag()用于设置窗口标志，，参数Qt.Window表明这是一个窗口，通常
@@ -135,4 +157,5 @@ class MainInterface(QMainWindow):
             warp_affine.setWindowTitle(text)
             # 显示窗口
             warp_affine.show()
+        
 
