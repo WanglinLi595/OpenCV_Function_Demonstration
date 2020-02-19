@@ -24,19 +24,21 @@ class CvtColor(QWidget):
         self._input_image = input_image
         (self.input_image_h, self.input_image_w) = self._input_image.shape[:2]
 
-        self._add_widget()
-        self._init_layout()
+        self._init_widget_and_widget()
         self._init_slot_connect()
 
+        # 显示图片
         self.original_graphics.scanf_image_data(input_image)
         self.original_graphics.dispaly_image()
 
+        # 显示图片数据
         table_view = show_image_data.TableView(self.original_table_view, self.input_image_h,
                             self.input_image_w)
         table_view.add_init_data(self._input_image)
 
-    def _add_widget(self):
-        '''初始化要添加的 widget
+
+    def _init_widget_and_widget(self):
+        '''初始化窗口布局
 
         @参数说明: 
             无
@@ -50,21 +52,10 @@ class CvtColor(QWidget):
         self.original_table_view = QTableView()
         self.result_table_view = QTableView()
 
-        self.original_graphics =  modify_graphics.ModifyQGraphicsView()
+        self.original_graphics = modify_graphics.ModifyQGraphicsView()
         self.result_graphics = modify_graphics.ModifyQGraphicsView()
 
-    def _init_layout(self):
-        '''初始化窗口布局
 
-        @参数说明: 
-            无
-
-        @返回值: 
-            无
-
-        @注意: 
-            无
-        '''
         self.ui.horizontal_layout = QHBoxLayout(self.ui.show_result)
         self.ui.vertical_layout_1 = QVBoxLayout()
         self.ui.vertical_layout_2 = QVBoxLayout()
