@@ -14,7 +14,7 @@ from PySide2.QtWidgets import QMainWindow, QFileDialog, QHBoxLayout
 from main_interface import gui_main_interface
 from PySide2.QtCore import QCoreApplication, Slot, Qt
 from tools import add_tree_item, show_image_data, modify_graphics, widget_set
-from opencv_function import function_warpaffine, function_cvtcolor, function_inrange
+from opencv_function import function_warpaffine, function_cvtcolor, function_inrange, function_resize
 
 class MainInterface(QMainWindow):
 
@@ -82,10 +82,15 @@ class MainInterface(QMainWindow):
         self.get_start_with_image_item = add_tree_item.add_tree_item(self.tree_group_item, add_tree_item.TreeItemType.function_item.value, 
                         self.class_name, text)
 
+        text = "cv.resize()"
+        self.get_start_with_image_item = add_tree_item.add_tree_item(self.tree_group_item, add_tree_item.TreeItemType.function_item.value, 
+                        self.class_name, text)
+
 
         text = "cv.warpAffine()"
         self.get_start_with_image_item = add_tree_item.add_tree_item(self.tree_group_item, add_tree_item.TreeItemType.function_item.value, 
                         self.class_name, text)
+
 
     def _init_slot_connect(self):
         '''初始化槽函数连接
@@ -141,4 +146,7 @@ class MainInterface(QMainWindow):
             warp_affine = function_warpaffine.WarpAffine(parent=self, input_image=self._original_image_data)
             widget_set.widget_set(warp_affine, "cv.warpAffine()")
         
+        elif item_str == "cv.resize()":
+            resize = function_resize.Resize(parent=self, input_image=self._original_image_data)
+            widget_set.widget_set(resize, "cv.warpAffine()")
 
