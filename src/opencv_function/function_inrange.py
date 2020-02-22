@@ -16,6 +16,14 @@ import numpy as np
 import cv2 as cv
 
 class InRange(QWidget):
+    '''cv.inrange() 函数演示类
+
+    @方法说明: 
+        # TODO
+
+    @属性说明: 
+        # TODO
+    '''
     def __init__(self, parent=None, input_image=None):
         super().__init__(parent)
         self.ui = gui_function_inrange.Ui_Form()

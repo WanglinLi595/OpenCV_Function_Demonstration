@@ -6,7 +6,7 @@
 @作者: LiWanglin
 @创建时间: 2020.02.15
 @最后编辑人: LiWanglin
-@最后编辑时间: 2020.02.18
+@最后编辑时间: 2020.02.22
 '''
 
 import cv2
@@ -17,6 +17,14 @@ from tools import add_tree_item, show_image_data, modify_graphics, widget_set
 from opencv_function import function_warpaffine, function_cvtcolor, function_inrange, function_resize
 
 class MainInterface(QMainWindow):
+    '''主界面类，用来组织所有的功能
+        
+    @属性说明: 
+    # TODO
+
+    @方法说明: 
+    # TODO
+    '''    
 
     _translate = QCoreApplication.translate         # 起代替作用
 
@@ -36,13 +44,13 @@ class MainInterface(QMainWindow):
         '''初始化布局
 
         @参数说明: 
-
+            无
         @返回值: 
-
+            无
         @注意: 
-
+            无
         '''    
-        self.ui.horizontalLayout = QHBoxLayout(self)
+        self.ui.horizontalLayout = QHBoxLayout()
 
         self.ui.horizontalLayout.addWidget(self._graphics_view)
         self.ui.horizontalLayout.addWidget(self.ui.table_view)
@@ -55,6 +63,17 @@ class MainInterface(QMainWindow):
         self.ui.centralwidget.setLayout(self.ui.horizontalLayout)    
 
     def __init_tree_widget(self):
+        '''初始化目录树
+
+        @参数说明: 
+            无
+
+        @返回值: 
+            无
+
+        @注意: 
+            无
+        '''
         
         # 清空目录树
         self.ui.tree_widget.clear()             # 清空函数树
@@ -111,7 +130,18 @@ class MainInterface(QMainWindow):
 
     @Slot()
     def load_image(self):
-        # 1. 获取图片数据
+        '''槽函数，获取图片信息，显示图片并显示图片数据
+
+        @参数说明: 
+            无
+
+        @返回值: 
+            无
+
+        @注意: 
+            无
+        '''
+
         text1 = self._translate("MainInterface", "载入图片")
         text2 = self._translate("MainInterface", "图片文件(*.bmp *.jpg *.png)")
         # 获取文件的绝对路径
@@ -121,21 +151,34 @@ class MainInterface(QMainWindow):
         # 获取图片的长和宽
         self._original_image_h, self._original_image_w = self._original_image_data.shape[:2]
 
-        # 2. 在 graphics_widget 里面显示图片
+        # 在 graphics_widget 里面显示图片
         self._graphics_view.scanf_image_data(self._original_image_data)
         self._graphics_view.dispaly_image()
 
-        # 3. 在 table_view 里面显示图片数据
+        # 在 table_view 里面显示图片数据
         table_view = show_image_data.TableView(self.ui.table_view, self._original_image_h,
                             self._original_image_w)
         table_view.add_init_data(self._original_image_data)
 
     def function_opencv(self, current_item):
+        '''槽函数，执行点击之后的函数
+
+        @参数说明: 
+            无
+
+        @返回值: 
+            无
+
+        @注意: 
+            无
+        '''
+        # 获取点击的选项的文字
         item_str = current_item.text(0)
 
+        # 进行匹配，来执行不同的函数
         if item_str == "cv.cvtColor()":
             cvt_color = function_cvtcolor.CvtColor(parent=self, input_image=self._original_image_data)
-            widget_set.widget_set(cvt_color, "cv.cvtColor()")
+            widget_set.widget_set(cvt_color, "cv.cvtColor()")       # 窗口初始化设置
 
         elif item_str == "cv.inRange()":
             in_range = function_inrange.InRange(parent=self, input_image=self._original_image_data)
@@ -148,5 +191,5 @@ class MainInterface(QMainWindow):
         
         elif item_str == "cv.resize()":
             resize = function_resize.Resize(parent=self, input_image=self._original_image_data)
-            widget_set.widget_set(resize, "cv.warpAffine()")
-
+            widget_set.widget_set(resize, "cv.resize()")
+            

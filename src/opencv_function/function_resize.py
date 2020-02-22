@@ -16,6 +16,14 @@ import numpy as np
 import cv2 as cv
 
 class Resize(QWidget):
+    '''cv.resize() 函数演示类
+
+    @方法说明: 
+        # TODO
+
+    @属性说明: 
+        # TODO
+    '''
     def __init__(self, parent=None, input_image=None):
         super().__init__(parent)
         self.ui = gui_function_resize.Ui_Form()
@@ -90,9 +98,12 @@ class Resize(QWidget):
     def execution_function(self):
         fx= eval(self.ui.le_fx.text())
         fy = eval(self.ui.le_fy.text())
-        interpolation = self.ui.cbb_interpolation.currentText()
+        
+        interpolation = eval(self.ui.cbb_interpolation.currentText())
 
         result_image_data = cv.resize(self._input_image, None, fx=fx,fy=fy, interpolation=interpolation)
+
+        result_image_h, result_image_w = result_image_data.shape
 
         # 在 self.result_graphics 显示图片
         self.result_graphics.scanf_image_data(result_image_data)
@@ -100,8 +111,8 @@ class Resize(QWidget):
 
         # 在 self.result_table_view 显示图片数据
         
-        table_view = show_image_data.TableView(self.result_table_view, self.input_image_h,
-                            self.input_image_w)
+        table_view = show_image_data.TableView(self.result_table_view, result_image_h,
+                            result_image_w)
         start = cv.getTickCount()
         table_view.add_init_data(result_image_data)
         end = cv.getTickCount()

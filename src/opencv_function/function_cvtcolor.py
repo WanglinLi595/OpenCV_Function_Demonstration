@@ -16,6 +16,14 @@ from tools import modify_graphics, show_image_data
 from opencv_function import gui_function_cvtcolor
 
 class CvtColor(QWidget):
+    '''cv.warpAffine() 函数演示类
+
+    @方法说明: 
+        # TODO
+
+    @属性说明: 
+        # TODO
+    '''
     def __init__(self, parent=None, input_image=None):
         super().__init__(parent)
         self.ui = gui_function_cvtcolor.Ui_Form()
