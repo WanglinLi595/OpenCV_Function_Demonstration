@@ -45,8 +45,10 @@ class MainInterface(QMainWindow):
 
         @参数说明: 
             无
+
         @返回值: 
             无
+
         @注意: 
             无
         '''    
@@ -159,6 +161,7 @@ class MainInterface(QMainWindow):
         table_view = show_image_data.TableView(self.ui.table_view, self._original_image_h,
                             self._original_image_w)
         table_view.add_init_data(self._original_image_data)
+
 
     def function_opencv(self, current_item):
         '''槽函数，执行点击之后的函数
