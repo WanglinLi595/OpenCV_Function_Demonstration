@@ -41,15 +41,15 @@ class Ui_function_getRotationMatrix2D(object):
 
         self.horizontalLayout.addWidget(self.label)
 
-        self.lineEdit = QLineEdit(self.groupBox)
-        self.lineEdit.setObjectName(u"lineEdit")
+        self.le_x = QLineEdit(self.groupBox)
+        self.le_x.setObjectName(u"le_x")
 
-        self.horizontalLayout.addWidget(self.lineEdit)
+        self.horizontalLayout.addWidget(self.le_x)
 
-        self.lineEdit_2 = QLineEdit(self.groupBox)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.le_y = QLineEdit(self.groupBox)
+        self.le_y.setObjectName(u"le_y")
 
-        self.horizontalLayout.addWidget(self.lineEdit_2)
+        self.horizontalLayout.addWidget(self.le_y)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -61,10 +61,10 @@ class Ui_function_getRotationMatrix2D(object):
 
         self.horizontalLayout_2.addWidget(self.label_2)
 
-        self.lineEdit_3 = QLineEdit(self.groupBox)
-        self.lineEdit_3.setObjectName(u"lineEdit_3")
+        self.le_angle = QLineEdit(self.groupBox)
+        self.le_angle.setObjectName(u"le_angle")
 
-        self.horizontalLayout_2.addWidget(self.lineEdit_3)
+        self.horizontalLayout_2.addWidget(self.le_angle)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_2)
@@ -76,13 +76,18 @@ class Ui_function_getRotationMatrix2D(object):
 
         self.horizontalLayout_3.addWidget(self.label_3)
 
-        self.lineEdit_4 = QLineEdit(self.groupBox)
-        self.lineEdit_4.setObjectName(u"lineEdit_4")
+        self.le_scale = QLineEdit(self.groupBox)
+        self.le_scale.setObjectName(u"le_scale")
 
-        self.horizontalLayout_3.addWidget(self.lineEdit_4)
+        self.horizontalLayout_3.addWidget(self.le_scale)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_3)
+
+        self.btn_arg_ok = QPushButton(self.groupBox)
+        self.btn_arg_ok.setObjectName(u"btn_arg_ok")
+
+        self.verticalLayout.addWidget(self.btn_arg_ok)
 
 
         self.verticalLayout_2.addWidget(self.groupBox)
@@ -92,10 +97,10 @@ class Ui_function_getRotationMatrix2D(object):
 
         self.verticalLayout_2.addWidget(self.label_4)
 
-        self.textBrowser_2 = QTextBrowser(function_getRotationMatrix2D)
-        self.textBrowser_2.setObjectName(u"textBrowser_2")
+        self.tb_result = QTextBrowser(function_getRotationMatrix2D)
+        self.tb_result.setObjectName(u"tb_result")
 
-        self.verticalLayout_2.addWidget(self.textBrowser_2)
+        self.verticalLayout_2.addWidget(self.tb_result)
 
 
         self.horizontalLayout_4.addLayout(self.verticalLayout_2)
@@ -114,6 +119,7 @@ class Ui_function_getRotationMatrix2D(object):
         self.label.setText(QCoreApplication.translate("function_getRotationMatrix2D", u"center\uff1a", None))
         self.label_2.setText(QCoreApplication.translate("function_getRotationMatrix2D", u"angle\uff1a", None))
         self.label_3.setText(QCoreApplication.translate("function_getRotationMatrix2D", u"scale\uff1a", None))
+        self.btn_arg_ok.setText(QCoreApplication.translate("function_getRotationMatrix2D", u"\u786e\u5b9a", None))
         self.label_4.setText(QCoreApplication.translate("function_getRotationMatrix2D", u"\u8f93\u51fa\u7ed3\u679c", None))
     # retranslateUi
 

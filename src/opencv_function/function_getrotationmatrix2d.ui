@@ -35,10 +35,10 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit"/>
+           <widget class="QLineEdit" name="le_x"/>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_2"/>
+           <widget class="QLineEdit" name="le_y"/>
           </item>
          </layout>
         </item>
@@ -52,7 +52,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_3"/>
+           <widget class="QLineEdit" name="le_angle"/>
           </item>
          </layout>
         </item>
@@ -66,9 +66,16 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_4"/>
+           <widget class="QLineEdit" name="le_scale"/>
           </item>
          </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_arg_ok">
+          <property name="text">
+           <string>确定</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -81,7 +88,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QTextBrowser" name="textBrowser_2"/>
+      <widget class="QTextBrowser" name="tb_result"/>
      </item>
     </layout>
    </item>

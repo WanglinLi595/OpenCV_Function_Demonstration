@@ -14,7 +14,7 @@ from PySide2.QtWidgets import QMainWindow, QFileDialog, QHBoxLayout
 from main_interface import gui_main_interface
 from PySide2.QtCore import QCoreApplication, Slot, Qt
 from tools import add_tree_item, show_image_data, modify_graphics, widget_set
-from opencv_function import function_warpaffine, function_cvtcolor, function_inrange, function_resize
+from opencv_function import function_warpaffine, function_cvtcolor, function_inrange, function_resize, function_getrotationmatrix2d
 
 class MainInterface(QMainWindow):
     '''主界面类，用来组织所有的功能
@@ -112,6 +112,11 @@ class MainInterface(QMainWindow):
         self.get_start_with_image_item = add_tree_item.add_tree_item(self.tree_group_item, add_tree_item.TreeItemType.function_item.value, 
                         self.class_name, text)
 
+        text = "cv.getRotationMatrix2D()"
+        self.get_start_with_image_item = add_tree_item.add_tree_item(self.tree_group_item, add_tree_item.TreeItemType.function_item.value, 
+                        self.class_name, text)
+
+
 
     def _init_slot_connect(self):
         '''初始化槽函数连接
@@ -187,12 +192,20 @@ class MainInterface(QMainWindow):
             in_range = function_inrange.InRange(parent=self, input_image=self._original_image_data)
             widget_set.widget_set(in_range , "cv.inRange()")
 
+        elif item_str == "cv.resize()":
+            resize = function_resize.Resize(parent=self, input_image=self._original_image_data)
+            widget_set.widget_set(resize, "cv.resize()")
+
 
         elif item_str == "cv.warpAffine()":
             warp_affine = function_warpaffine.WarpAffine(parent=self, input_image=self._original_image_data)
             widget_set.widget_set(warp_affine, "cv.warpAffine()")
+
+        elif item_str == "cv.getRotationMatrix2D()":
+            resize = function_getrotationmatrix2d.GetRotationMatrix2D(parent=self)
+            widget_set.widget_set(resize, "cv.getRotationMatrix2D()")
         
-        elif item_str == "cv.resize()":
-            resize = function_resize.Resize(parent=self, input_image=self._original_image_data)
-            widget_set.widget_set(resize, "cv.resize()")
+
+
+        
             
