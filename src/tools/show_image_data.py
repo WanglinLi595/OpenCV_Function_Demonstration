@@ -29,14 +29,15 @@ class TableView():
         item_or_row = QAbstractItemView.SelectItems         # 项选则模式
         self.table_view.setSelectionBehavior(item_or_row)    # 单元格选择
         self.table_view.setAlternatingRowColors(True)        # 设置交替行颜色
-        # 根据数据调节单元格大小
-        self.table_view.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        # 根据数据调节单元格大小 (不适用，加载数据时时间过长)
+        # self.table_view.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
     
-    def add_init_data(self, data):
+    def add_init_data(self, data, data_length=3):
         '''添加数据到 table_view
 
         @参数说明: 
             data ：要显示的数据
+            data_length : 设置单元格的宽度
 
         @返回值: 
             无
@@ -45,6 +46,12 @@ class TableView():
             无
         '''   
         self._data = data
+
+        # 设计单元格宽度
+        if (data_length == 2):
+            self.table_view.horizontalHeader().setDefaultSectionSize(50)
+        else:
+            self.table_view.horizontalHeader().setDefaultSectionSize(120)
 
         for i in range(self.table_col):
             for j in range(self.table_row): 

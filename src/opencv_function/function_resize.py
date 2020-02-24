@@ -127,8 +127,5 @@ class Resize(QWidget):
         
         table_view = show_image_data.TableView(self.result_table_view, result_image_h,
                             result_image_w)
-        start = cv.getTickCount()
-        table_view.add_init_data(result_image_data)
-        end = cv.getTickCount()
-        time = (end - start) / cv.getTickFrequency()
-        print("经历的时间为：", time)
+        table_view.add_init_data(result_image_data, len(result_image_data.shape))
+

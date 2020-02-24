@@ -163,9 +163,12 @@ class MainInterface(QMainWindow):
         self._graphics_view.dispaly_image()
 
         # 在 table_view 里面显示图片数据
+        start_time = cv2.getTickCount()
         table_view = show_image_data.TableView(self.ui.table_view, self._original_image_h,
                             self._original_image_w)
-        table_view.add_init_data(self._original_image_data)
+        table_view.add_init_data(self._original_image_data, len(self._original_image_data.shape))
+        end_time = cv2.getTickCount()
+        print("Loading image spent time ：", (end_time - start_time)/cv2.getTickFrequency())
 
 
     def function_opencv(self, current_item):

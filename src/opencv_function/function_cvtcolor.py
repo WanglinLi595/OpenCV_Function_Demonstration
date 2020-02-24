@@ -42,7 +42,7 @@ class CvtColor(QWidget):
         # 显示图片数据
         table_view = show_image_data.TableView(self.original_table_view, self.input_image_h,
                             self.input_image_w)
-        table_view.add_init_data(self._input_image)
+        table_view.add_init_data(self._input_image, len(self._input_image.shape))
 
 
     def _init_widget_and_widget(self):
@@ -120,8 +120,4 @@ class CvtColor(QWidget):
         
         table_view = show_image_data.TableView(self.result_table_view, self.input_image_h,
                             self.input_image_w)
-        start = cv.getTickCount()
-        table_view.add_init_data(result_image_data)
-        end = cv.getTickCount()
-        time = (end - start) / cv.getTickFrequency()
-        print("经历的时间为：", time)
+        table_view.add_init_data(result_image_data, len(result_image_data.shape))
