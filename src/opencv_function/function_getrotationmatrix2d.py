@@ -15,12 +15,13 @@ from PySide2.QtCore import Slot
 from opencv_function import gui_function_getrotationmatrix2d
 
 class GetRotationMatrix2D(QWidget):
-    '''
+    '''getRotationMatrix2D() 函数演示类
 
     @方法说明: 
-
+    # TODO
 
     @属性说明: 
+    # TODO
 
     '''
 
@@ -50,13 +51,13 @@ class GetRotationMatrix2D(QWidget):
         '''槽函数
 
         @参数说明: 
-
+            无
 
         @返回值: 
-
+            无
 
         @注意: 
-
+            无
         '''
         # 从控件中获取输入参数    
         center_x = eval(self.ui.le_x.text())

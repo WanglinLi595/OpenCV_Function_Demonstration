@@ -96,14 +96,28 @@ class Resize(QWidget):
         self.ui.btn_arg_ok.clicked.connect(self.execution_function)
 
     def execution_function(self):
+        '''槽函数
+
+        @参数说明: 
+            无
+
+        @返回值: 
+            无
+
+        @注意: 
+            无
+        '''
+        # 获取输入参数
         fx= eval(self.ui.le_fx.text())
         fy = eval(self.ui.le_fy.text())
         
         interpolation = eval(self.ui.cbb_interpolation.currentText())
 
+        # 执行 cv.resize() 函数
         result_image_data = cv.resize(self._input_image, None, fx=fx,fy=fy, interpolation=interpolation)
 
-        result_image_h, result_image_w = result_image_data.shape
+        # 获取返回结果图片数据的属性
+        result_image_h, result_image_w = result_image_data.shape[:2]
 
         # 在 self.result_graphics 显示图片
         self.result_graphics.scanf_image_data(result_image_data)

@@ -97,7 +97,17 @@ class CvtColor(QWidget):
 
     @Slot()
     def execution_function(self):
+        '''槽函数
 
+        @参数说明: 
+            无
+
+        @返回值: 
+            无
+
+        @注意: 
+            无
+        '''        
 
         # 执行 cv2.warpAffine() 函数
         result_image_data = cv.cvtColor(self._input_image, eval(self.ui.cb_arg.currentText()))

@@ -96,9 +96,22 @@ class InRange(QWidget):
         self.ui.btn_arg_ok.clicked.connect(self.execution_function)
 
     def execution_function(self):
+        '''槽函数
+
+        @参数说明: 
+            无
+
+        @返回值: 
+            无
+
+        @注意: 
+            无
+        '''
+        # 获取输入参数
         lower = np.array(eval(self.ui.le_lowerb.text()))
         upper = np.array(eval(self.ui.le_upperb.text()))
 
+        # 执行 cv.inRange() 函数
         result_image_data = cv.inRange(self._input_image, lower, upper)
 
         # 在 self.result_graphics 显示图片
@@ -106,11 +119,7 @@ class InRange(QWidget):
         self.result_graphics.dispaly_image()
 
         # 在 self.result_table_view 显示图片数据
-        
         table_view = show_image_data.TableView(self.result_table_view, self.input_image_h,
                             self.input_image_w)
-        start = cv.getTickCount()
         table_view.add_init_data(result_image_data)
-        end = cv.getTickCount()
-        time = (end - start) / cv.getTickFrequency()
-        print("经历的时间为：", time)
+
