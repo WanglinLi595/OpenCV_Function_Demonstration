@@ -42,7 +42,7 @@ class Resize(QWidget):
         # 显示图片数据
         table_view = show_image_data.TableView(self.original_table_view, self.input_image_h,
                             self.input_image_w)
-        table_view.add_init_data(self._input_image)
+        table_view.add_init_data(self._input_image, len(self._input_image.shape))
 
 
     def _init_widget_and_widget(self):
@@ -124,7 +124,6 @@ class Resize(QWidget):
         self.result_graphics.dispaly_image()
 
         # 在 self.result_table_view 显示图片数据
-        
         table_view = show_image_data.TableView(self.result_table_view, result_image_h,
                             result_image_w)
         table_view.add_init_data(result_image_data, len(result_image_data.shape))
